@@ -1,0 +1,2 @@
+; https://tonsky.me/blog/clojurefmt/
+{:indents {#re ".*" [[:inner 0]]}}

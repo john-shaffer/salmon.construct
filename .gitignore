@@ -1,0 +1,11 @@
+.*
+!.cljfmt.edn
+!.codescene
+!.editorconfig
+!.envrc
+!.github
+!.gitignore
+!.vscode
+development/src/dev/
+gcroots
+target/

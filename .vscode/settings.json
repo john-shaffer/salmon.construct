@@ -1,0 +1,23 @@
+{
+  "calva.evalOnSave": true,
+  "calva.replConnectSequences": [
+    {
+      "afterCLJReplJackInCode": "(require 'hashp.core 'salmon.cloudformation 'salmon.signal)",
+      "autoSelectForConnect": true,
+      "autoSelectForJackIn": true,
+      "cljsType": "none",
+      "menuSelections": {
+        "cljAliases": ["test"]
+      },
+      "name": "Salmon",
+      "projectRootPath": ["."],
+      "projectType": "deps.edn"
+    }
+  ],
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
