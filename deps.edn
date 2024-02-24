@@ -2,12 +2,12 @@
  :deps
  {org.clojure/clojure {:mvn/version "1.12.0-alpha5"}
   io.staticweb/cloudformation-templating {:mvn/version "2.1.0"}
-  rs.shaffe/salmon {:mvn/version "0.14.0"}}
+  rs.shaffe/salmon {:mvn/version "0.15.0"}}
  :aliases
  {:antq
   {:deps
-   {com.github.liquidz/antq {:mvn/version "2.8.1173"}
-    org.slf4j/slf4j-nop {:mvn/version "2.0.11"}}
+   {com.github.liquidz/antq {:mvn/version "2.8.1185"}
+    org.slf4j/slf4j-nop {:mvn/version "2.0.12"}}
    :main-opts ["-m" "antq.core"]}
   :build
   {:deps
