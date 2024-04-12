@@ -15,8 +15,6 @@
             [salmon.route53 :as r53]
             [salmon.util :as u]))
 
-(def ^:private aws-cloudfront-hosted-zone-id "Z2FDTNDATAQYW2")
-
 (defn- bucket [& {:as opts :keys [tags]}]
   (u/resource
    "AWS::S3::Bucket"
@@ -95,13 +93,13 @@
     [{:Name domain-name
       :Type "A"
       :AliasTarget
-      {:HostedZoneId aws-cloudfront-hosted-zone-id
+      {:HostedZoneId ct/cloudfront-hosted-zone-id
        :DNSName cloudfront-domain-name
        :EvaluateTargetHealth false}}
      {:Name domain-name
       :Type "AAAA"
       :AliasTarget
-      {:HostedZoneId aws-cloudfront-hosted-zone-id
+      {:HostedZoneId ct/cloudfront-hosted-zone-id
        :DNSName cloudfront-domain-name
        :EvaluateTargetHealth false}}]}
    opts))
