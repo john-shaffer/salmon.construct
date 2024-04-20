@@ -1,5 +1,8 @@
 .*
 !.cljfmt.edn
+!.clj-kondo
+.clj-kondo/*
+!.clj-kondo/config.edn
 !.codescene
 !.editorconfig
 !.envrc
