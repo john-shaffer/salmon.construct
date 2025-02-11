@@ -240,7 +240,7 @@
      :StaticSiteBucket (static-site-bucket)
      :StaticSiteBucketPolicy (static-site-bucket-policy (ct/ref :StaticSiteBucket) :OriginAccessIdentity)}}})
 
-(defn- stack [{:keys [capabilities lint? name outputs resources region tags]}]
+(defn- stack [{:keys [capabilities lint? name outputs resources region tags termination-protection?]}]
   (cf/stack
     :capabilities capabilities
     :lint? lint?
@@ -253,7 +253,8 @@
           {:SalmonOwner "salmon.construct"}
           :Outputs outputs
           :Resources resources}
-      (me/remove-vals nil?))))
+      (me/remove-vals nil?))
+    :termination-protection? termination-protection?))
 
 (defn- ALPHA-group
   "Experimental static site group. Likely to change."

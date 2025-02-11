@@ -72,7 +72,7 @@
    :ECRReadAccessPolicy (ecr-read-access-policy)
    :ECRRepo (ecr-repo)})
 
-(defn- stack [& {:keys [lint? name outputs resources region tags]}]
+(defn- stack [& {:keys [lint? name outputs resources region tags termination-protection?]}]
   (cf/stack
     :capabilities #{"CAPABILITY_AUTO_EXPAND" "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM"}
     :lint? lint?
@@ -85,7 +85,8 @@
           {:SalmonOwner "salmon.construct"}
           :Outputs outputs
           :Resources resources}
-      (me/remove-vals nil?))))
+      (me/remove-vals nil?))
+    :termination-protection? termination-protection?))
 
 (defn- ALPHA-group
   "Experimental shared regional resources group. Likely to change."

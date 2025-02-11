@@ -145,19 +145,20 @@
        domain-name
        (ct/get-att :Distribution :DomainName))}}})
 
-(defn- stack [& {:keys [lint? name outputs resources region tags]}]
+(defn- stack [& {:keys [lint? name outputs resources region tags termination-protection?]}]
   (cf/stack
-   :lint? lint?
-   :name name
-   :region region
-   :tags tags
-   :template
-   (->> {:AWSTemplateFormatVersion "2010-09-09"
-         :Metadata
-         {:SalmonOwner "salmon.construct"}
-         :Outputs outputs
-         :Resources resources}
-        (me/remove-vals nil?))))
+    :lint? lint?
+    :name name
+    :region region
+    :tags tags
+    :template
+    (->> {:AWSTemplateFormatVersion "2010-09-09"
+          :Metadata
+          {:SalmonOwner "salmon.construct"}
+          :Outputs outputs
+          :Resources resources}
+      (me/remove-vals nil?))
+    :termination-protection? termination-protection?))
 
 (defn- ALPHA-group
   "Experimental static site group. Likely to change."
