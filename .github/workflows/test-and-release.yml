@@ -14,9 +14,6 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v10
 
-      - name: Use the Magic Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@v4
-
       - name: Restore cached Clojure dependencies
         id: clj-cache-restore
         uses: actions/cache/restore@v4
