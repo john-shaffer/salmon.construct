@@ -148,14 +148,13 @@
         :EvaluateTargetHealth false}}]}
     opts))
 
-(defn- static-site [{:keys [certificate-arn domain-name]}]
+(defn- static-site [{:as opts :keys [certificate-arn domain-name]}]
   {:inputs
-   {::ds/config
-    {:domain-name domain-name}
+   {::ds/config opts
     ::ds/start
-    (fn [{{:keys [domain-name]} ::ds/config}]
-      (let [client (aws/client {:api :route53})]
-        {:hosted-zone-id (r53/fetch-hosted-zone-id client domain-name)}))}
+    (fn [{{:keys [domain-name route53-client]} ::ds/config}]
+      (let [route53-client (or route53-client (aws/client {:api :route53}))]
+        {:hosted-zone-id (r53/fetch-hosted-zone-id route53-client domain-name)}))}
    :global
    {:resources
     (->>
