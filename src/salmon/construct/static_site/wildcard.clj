@@ -239,21 +239,17 @@
      :StaticSiteBucket (static-site-bucket)
      :StaticSiteBucketPolicy (static-site-bucket-policy (ct/ref :StaticSiteBucket) :OriginAccessIdentity)}}})
 
-(defn- stack [{:keys [capabilities lint? name outputs resources region tags termination-protection?]}]
+(defn- stack [{:as opts :keys [outputs resources]}]
   (cf/stack
-    :capabilities capabilities
-    :lint? lint?
-    :name name
-    :region region
-    :tags tags
-    :template
-    (->> {:AWSTemplateFormatVersion "2010-09-09"
-          :Metadata
-          {:SalmonOwner "salmon.construct"}
-          :Outputs outputs
-          :Resources resources}
-      (me/remove-vals nil?))
-    :termination-protection? termination-protection?))
+    (merge
+      {:template
+       (->> {:AWSTemplateFormatVersion "2010-09-09"
+             :Metadata
+             {:SalmonOwner "salmon.construct"}
+             :Outputs outputs
+             :Resources resources}
+         (me/remove-vals nil?))}
+      opts)))
 
 (defn- ALPHA-group
   "Experimental static site group. Likely to change."
