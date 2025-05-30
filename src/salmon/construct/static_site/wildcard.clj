@@ -7,7 +7,8 @@
             [salmon.cloudformation :as cf]
             [salmon.resource.certificate :as r-cert]
             [salmon.route53 :as r53]
-            [salmon.util :as u]))
+            [salmon.util :as u]
+            [sys-ext.core :as se]))
 
 ;; logging component
 ;; logging buckets because cloudfront can't deliver
@@ -253,14 +254,20 @@
 
 (defn- ALPHA-group
   "Experimental static site group. Likely to change."
-  [name-prefix & {:as opts :keys [logging-region region]}]
+  [name-prefix & {:as opts :keys [aws-client-opts logging-region region]}]
   (let [{:keys [inputs global logging regional]} (static-site opts)]
     {:inputs inputs
+     :global-aws-client-opts
+     (se/merge
+       aws-client-opts
+       {:region :us-east-1})
      :global (when global
                (-> (assoc opts :name (str name-prefix "Global"))
                  (merge global)
-                 (assoc :region :us-east-1
-                   :capabilities #{"CAPABILITY_IAM"})
+                 (assoc
+                   :aws-client-opts (ds/local-ref [:global-aws-client-opts])
+                   :capabilities #{"CAPABILITY_IAM"}
+                   :region :us-east-1)
                  stack))
      :logging (when logging
                 (-> (assoc opts :name (str name-prefix "Logging"))
