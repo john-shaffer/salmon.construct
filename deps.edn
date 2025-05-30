@@ -1,13 +1,13 @@
 {:paths ["src" "resources"]
  :deps
  {org.clojure/clojure {:mvn/version "1.12.0"}
-  io.staticweb/cloudformation-templating {:mvn/version "2.3.1"}
-  rs.shaffe/salmon {:mvn/version "0.21.0"}}
+  io.staticweb/cloudformation-templating {:mvn/version "3.1.0"}
+  rs.shaffe/salmon {:mvn/version "0.27.0"}}
  :aliases
  {:antq
   {:deps
-   {com.github.liquidz/antq {:mvn/version "2.11.1264"}
-    org.slf4j/slf4j-nop {:mvn/version "2.0.16"}}
+   {com.github.liquidz/antq {:mvn/version "2.11.1276"}
+    org.slf4j/slf4j-nop {:mvn/version "2.0.17"}}
    :main-opts ["-m" "antq.core"]}
   :build
   {:deps
@@ -17,7 +17,7 @@
   :test
   {:extra-deps
    {; Used by malli.generator/-re-gen
-    com.gfredericks/test.chuck {:mvn/version "0.2.14"}
+    com.gfredericks/test.chuck {:mvn/version "0.2.15"}
     hashp/hashp {:mvn/version "0.2.2"}
     lambdaisland/kaocha {:git/url "https://github.com/insilica/kaocha.git"
                          :sha "811d37448e10b52e78dd2ef6ba95535e59f6bbda"}
