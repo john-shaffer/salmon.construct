@@ -207,7 +207,7 @@
        :StaticSiteOriginRequestVersion
        {:Type "AWS::Lambda::Version"
         :Properties
-        {:Description "v4"
+        {:Description "v5"
          :FunctionName (ct/ref :StaticSiteOriginRequestFunction)}}}
       (me/remove-vals nil?))}
    :logging
