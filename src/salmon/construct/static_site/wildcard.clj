@@ -197,7 +197,7 @@
          :Handler "index.handler"
          :MemorySize 128
          :Role (ct/arn :StaticSiteOriginRequestRole)
-         :Runtime "nodejs18.x"
+         :Runtime "nodejs22.x"
          :Code
          {:ZipFile
           (ct/join ""
